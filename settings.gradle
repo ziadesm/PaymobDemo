@@ -1,4 +1,4 @@
 rootProject.name = "PaymobDemo"
-//include ':app'
+include ':app'
 include ':Paymob'
 include ':acceptsdk-release'
