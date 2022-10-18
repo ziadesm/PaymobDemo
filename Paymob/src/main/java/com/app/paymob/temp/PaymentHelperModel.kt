@@ -4,6 +4,7 @@ import java.io.Serializable
 
 @Keep
 data class PaymentHelperModel(
+    var isFragment: Boolean = false,
     var checkout_id: String? = null,
     var payment_type: HashSet<String> = hashSetOf(),
     var shopper_url: String? = null,

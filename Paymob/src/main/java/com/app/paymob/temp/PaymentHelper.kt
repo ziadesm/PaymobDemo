@@ -25,6 +25,7 @@ class PaymentHelper: PaymentBuilder, OnGettingResultBack {
     private constructor(fragment: Fragment, paymentCallback: OnPaymentResponseCallback) {
         mContext = fragment.requireContext()
         mPaymentModel = PaymentHelperModel()
+        mPaymentModel?.isFragment = true
         mPaymentResponse = paymentCallback
         createStartingFragment(fragment)
     }
@@ -161,7 +162,8 @@ class PaymentHelper: PaymentBuilder, OnGettingResultBack {
         mPaymentModel?.phoneNumber?.let { payIntent.putExtra(PayActivityIntentKeys.PHONE_NUMBER, it) }
         mPaymentModel?.postalNumber?.let { payIntent.putExtra(PayActivityIntentKeys.POSTAL_CODE, it) }
 
-        mStartPayment?.launchResultActivity(payIntent)
+        if (mPaymentModel?.isFragment == true) mStartPayment?.launchResultFragment(payIntent)
+        else mStartPayment?.launchResultActivity(payIntent)
         val secureIntent = Intent(mContext, ThreeDSecureWebViewActivty::class.java)
         secureIntent.putExtra("ActionBar", false)
     }
