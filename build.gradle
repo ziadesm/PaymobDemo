@@ -16,18 +16,6 @@ buildscript {
     }
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            groupId = 'com.app.paymobandroid'
-            artifactId = 'paymob-android'
-            version = '1.0.8'
-
-//            from components.java
-        }
-    }
-}
-
 /*plugins {
 //    id "com.osacky.doctor" version "0.8.1"
     id 'org.jetbrains.kotlin.android' version '1.7.10' apply false
@@ -35,7 +23,7 @@ publishing {
 //    id 'com.android.library' version '7.3.0' apply false
 }*/
 allprojects {
-    plugins.withId("com.vanniktech.maven.publish.base") {
+    /*plugins.withId("com.vanniktech.maven.publish.base") {
         group = "com.example.project"
         version = "1.0.3-SNAPSHOT"
 
@@ -75,7 +63,7 @@ allprojects {
             // in Gradle properties
 //            pomFromGradleProperties()
         }
-    }
+    }*/
     repositories {
         google()
         jcenter()
