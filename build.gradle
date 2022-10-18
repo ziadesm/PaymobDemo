@@ -1,0 +1,119 @@
+apply plugin: "com.vanniktech.maven.publish"
+apply plugin: 'maven-publish'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://maven.google.com' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.3.0'
+        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.22.0'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10'
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.app.paymobandroid'
+            artifactId = 'paymob-android'
+            version = '1.0.8'
+
+//            from components.java
+        }
+    }
+}
+
+/*plugins {
+//    id "com.osacky.doctor" version "0.8.1"
+    id 'org.jetbrains.kotlin.android' version '1.7.10' apply false
+//    id 'com.android.dynamic-feature' version '7.3.0' apply true
+//    id 'com.android.library' version '7.3.0' apply false
+}*/
+allprojects {
+    plugins.withId("com.vanniktech.maven.publish.base") {
+        group = "com.example.project"
+        version = "1.0.3-SNAPSHOT"
+
+        mavenPublishing {
+
+            // Will only apply to non snapshot builds.
+            // Uses credentials as described above, supports both regular and in memory signing.
+            signAllPublications()
+
+            pom {
+                name = "My Library"
+                description = "A description of what my library does."
+                inceptionYear = "2020"
+                url = "https ://github.com/ziadesm/PaymobDemo/"
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                        distribution = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "ziadesm"
+                        name = "Ziad"
+                        url = "https://github.com/ziadesm/"
+                    }
+                }
+                scm {
+                    url = "https://github.com/ziadesm/PaymobDemo/"
+                    connection = "scm:git:git://github.com/ziadesm/PaymobDemo.git"
+                    developerConnection = "scm:git:ssh://git@github.com/ziadesm/PaymobDemo.git"
+                }
+            }
+
+            // Alternatively to the DSL based POM configuration above you can define them
+            // in Gradle properties
+//            pomFromGradleProperties()
+        }
+    }
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://maven.google.com' }
+    }
+
+    configurations {
+        scm
+    }
+
+    dependencies {
+        scm 'org.eclipse.jgit:org.eclipse.jgit:4.9.2.201712150930-r'
+    }
+}
+
+/*task clean(type: Delete) {
+    delete rootProject.buildDir
+}*/
+
+
+
+
+
+/*
+subprojects {
+    publishing {
+        publications {
+            aar(MavenPublication) {
+                groupId "com.app"
+                version "1.0.2"
+                artifactId "paymob-demo"
+
+                artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+                //artifact sourcesJar
+                //artifact packageJavadoc
+            }
+        }
+    }
+}*/
