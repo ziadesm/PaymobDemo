@@ -3,6 +3,7 @@ import android.content.Intent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.app.paymob.builder.OnGettingResultBack
 
@@ -12,10 +13,9 @@ class StartingActivityResult(
 
     private lateinit var fragmentLaunchActivityResult: ActivityResultLauncher<Intent>
     private lateinit var activityLaunchActivityResult: ActivityResultLauncher<Intent>
-    fun initFragmentResult(fragment: FragmentActivity): ActivityResultLauncher<Intent> {
+    fun initFragmentResult(fragment: Fragment): ActivityResultLauncher<Intent> {
         fragmentLaunchActivityResult = fragment.registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()) { result ->
-
             result.data?.let { mListener.onGettingResult(result.resultCode, it) }
         }
         return fragmentLaunchActivityResult

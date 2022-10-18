@@ -46,6 +46,11 @@ interface PaymentBuilder {
      * @params city_name
      * */
     fun setCityName(floorNumber: String): PaymentBuilder
+    /**
+     * Setting city name in Paymob database
+     * @params city_name
+     * */
+    fun setPaymentKey(paymentKey: String): PaymentBuilder
     fun setStateName(stateNumber: String): PaymentBuilder
     fun setCountry(countryName: String): PaymentBuilder
     fun setEmail(email: String): PaymentBuilder
